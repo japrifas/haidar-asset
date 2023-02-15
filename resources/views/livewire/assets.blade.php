@@ -305,6 +305,9 @@
                                         wire:model='assetProcessor'>
 
                                     </input>
+                                    @error('assetProcessor')
+                                        <span class='text-danger'>{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -320,7 +323,7 @@
                                         <option value="Windows 11 Pro">Windows 11 Pro</option>
                                     </select>
 
-                                    @error('assetModel')
+                                    @error('assetWindows')
                                         <span class='text-danger'>{{ $message }}</span>
                                     @enderror
                                 </div>
