@@ -153,7 +153,8 @@
                                                 Actions
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">
+                                                <a class="dropdown-item" href="/admin/assets/{{ $asset->id }}"
+                                                    {{-- wire:click.prevent="detailAsset({{ $asset }})" --}}>
                                                     Detail
                                                 </a>
                                                 <a class="dropdown-item" href="#"
@@ -642,6 +643,103 @@
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
                 </form>
+            </div>
+        </div>
+    </div>
+    {{-- modal detail asset --}}
+    <div wire:ignore.self class="modal modal-blur fade" id="modal_detail_asset" tabindex="-1" aria-hidden="true"
+        role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ $asset->assetName }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a href="#tabs-home-10" class="nav-link active" data-bs-toggle="tab"
+                                            aria-selected="true" role="tab">Detail</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a href="#tabs-profile-10" class="nav-link" data-bs-toggle="tab"
+                                            aria-selected="false" role="tab" tabindex="-1">History</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active show" id="tabs-home-10" role="tabpanel">
+                                        <h4>Home tab</h4>
+                                        <div>
+
+                                            <table class="datatable">
+                                                <tr>
+                                                    <td width="250">Asset Tag</td>
+                                                    <td> <input type="text" wire:model='assetTag'></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Asset Number</td>
+                                                    <td>{{ $this->assetName }}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Model</td>
+                                                    <td>{{ $this->assetModel }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Manufacture</td>
+                                                    <td>{{ $this->assetManufacture }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Ram</td>
+                                                    <td>{{ $asset->ram }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Processor</td>
+                                                    <td>{{ $asset->processor }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Os</td>
+                                                    <td>{{ $asset->windows }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Antivirus</td>
+                                                    <td>{{ $asset->antivirus }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Employee</td>
+                                                    <td>{{ $asset }}
+                                                        {{-- @if ($asset->employee_id == null)
+                                                            -
+                                                        @else
+                                                            {{ $asset->employee->employeeName }}
+                                                        @endif --}}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tabs-profile-10" role="tabpanel">
+                                        <h4>Profile tab</h4>
+                                        <div>Fringilla egestas nunc quis tellus diam rhoncus ultricies tristique enim at
+                                            diam, sem nunc amet, pellentesque id egestas velit sed</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+
             </div>
         </div>
     </div>

@@ -34,6 +34,7 @@ class Asset extends Model
         $query->where(function ($query) use ($val) {
             $query->where('assetTag', 'like', $val)
                 ->orWhere('assetName', 'like', $val)
+
                 ->orWhere('status', 'like', $val);
         });
     }

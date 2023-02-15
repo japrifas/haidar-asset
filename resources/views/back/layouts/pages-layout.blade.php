@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="{{ asset('back/static/haidar.ico') }}" type="image/x-icon">
     <!-- CSS files -->
     {{-- <base href="/"> --}}
-    <link href="{{ asset('back/dist/css/tabler.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler.min.css">
     <link href="{{ asset('back/dist/css/tabler-flags.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('back/dist/css/tabler-payments.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('back/dist/css/tabler-vendors.min.css') }}" rel="stylesheet" />
@@ -27,6 +27,17 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     @stack('stylesheets') @livewireStyles
     <link href="{{ asset('back/dist/css/demo.min.css') }}" rel="stylesheet" />
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+
+        :root {
+            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+        }
+
+        body {
+            font-feature-settings: "cv03", "cv04", "cv11";
+        }
+    </style>
 </head>
 
 <body>
@@ -57,7 +68,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Tabler Core -->
-    <script src="{{ asset('back/dist/js/tabler.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
     @stack('scripts')
     @livewireScripts
     <script>

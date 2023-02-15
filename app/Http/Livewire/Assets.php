@@ -13,7 +13,8 @@ use Livewire\WithPagination;
 
 class Assets extends Component
 {
-    public $assetTag, $assetName, $assetAntivirus, $assetStatus, $assetModel, $assetManufacture, $assetRam, $assetProcessor, $assetWindows, $selected_asset_id, $assetCheckinDate, $assetCheckoutDate, $employeeId, $assetNote;
+    public $assetTag, $assetName, $assetAntivirus, $assetStatus, $assetModel, $assetManufacture, $assetRam, $assetProcessor, $assetWindows, $selected_asset_id, $assetCheckinDate, $assetCheckoutDate, $employeeId, $assetNote,
+        $detailAssetTag;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $sortBy = 'created_at';
@@ -243,6 +244,20 @@ class Assets extends Component
         $asset = Asset::find($id);
         $asset->delete();
         $this->showToastr('Asset Data has been successfull deleted.', 'success');
+    }
+
+    public function detailAsset($asset)
+    {
+        $this->assetTag = $asset['assetTag'];
+        $this->assetName = $asset['assetName'];
+        $this->assetAntivirus = $asset['antivirus'];
+        $this->assetModel = $asset['model'];
+        $this->assetManufacture = $asset['manufacture_id'];
+        $this->assetRam = $asset['ram'];
+        $this->assetProcessor = $asset['processor'];
+        $this->assetWindows = $asset['windows'];
+        $this->assetStatus = $asset['status'];
+        $this->dispatchBrowserEvent('showDetailAssetModal');
     }
 
     public function showToastr($message, $type)

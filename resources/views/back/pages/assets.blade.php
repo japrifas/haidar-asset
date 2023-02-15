@@ -57,6 +57,9 @@
         window.addEventListener('hide_modal_checkoutAsset', function(event) {
             $('#modal_checkout_asset').modal('hide');
         });
+        window.addEventListener('showDetailAssetModal', function(event) {
+            $('#modal_detail_asset').modal('show');
+        });
 
 
         window.addEventListener('deleteAsset', function(event) {

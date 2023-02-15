@@ -19,6 +19,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::view('/roles', 'back.pages.roles')->name('roles');
         Route::view('/permissions', 'back.pages.permissions')->name('permissions');
         Route::view('/assets', 'back.pages.assets')->name('assets');
+        Route::view('/assets/{id}', 'back.pages.assetsDetail')->name('assetsDetail');
         Route::view('/manufactures', 'back.pages.manufactures')->name('manufactures');
         Route::view('/employees', 'back.pages.employees')->name('employees');
         Route::view('/organizations', 'back.pages.organizations')->name('organizations');
