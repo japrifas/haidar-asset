@@ -38,4 +38,8 @@ class Asset extends Model
                 ->orWhere('status', 'like', $val);
         });
     }
+    public function assetHistories()
+    {
+        return $this->hasMany(AssetHistory::class, 'id', 'asset_id');
+    }
 }

@@ -13,8 +13,8 @@ use Livewire\WithPagination;
 
 class Assets extends Component
 {
-    public $assetTag, $assetName, $assetAntivirus, $assetStatus, $assetModel, $assetManufacture, $assetRam, $assetProcessor, $assetWindows, $selected_asset_id, $assetCheckinDate, $assetCheckoutDate, $employeeId, $assetNote,
-        $detailAssetTag;
+    public $assetTag, $assetName, $assetAntivirus, $assetStatus, $assetModel, $assetManufacture, $assetRam, $assetProcessor, $assetWindows, $assetEmployee, $selected_asset_id, $assetCheckinDate, $assetCheckoutDate, $employeeId, $assetNote,
+        $detailAssetTag, $assetHistories, $assetId;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $sortBy = 'created_at';
@@ -51,10 +51,12 @@ class Assets extends Component
             ->paginate($this->perPage);
         $manufacture = Manufacture::all();
         $employee = Employee::all();
+
         return view('livewire.assets', [
             'employees' => $employee,
             'manufactures' => $manufacture,
-            'assets' => $asset
+            'assets' => $asset,
+
 
 
         ]);
@@ -115,7 +117,8 @@ class Assets extends Component
         $this->assetName = $asset['assetName'];
         $this->assetAntivirus = $asset['antivirus'];
         $this->assetModel = $asset['model'];
-        $this->assetManufacture = $asset['manufacture_id'];
+
+        $this->assetManufacture = Manufacture::find($asset['manufacture_id'])->pluck('name');
         $this->assetRam = $asset['ram'];
         $this->assetProcessor = $asset['processor'];
         $this->assetWindows = $asset['windows'];
@@ -248,15 +251,37 @@ class Assets extends Component
 
     public function detailAsset($asset)
     {
+        // Tab Asset Detail
+        $assetId = $asset['id'];
+        $manufactureId = $asset['manufacture_id'];
+        $assetManufacture  =
+            Manufacture::find($manufactureId);
+        $employeeId = $asset['employee_id'];
+        $assetEmployee = Employee::find($employeeId);
+
+        $this->assetId = $assetId;
         $this->assetTag = $asset['assetTag'];
         $this->assetName = $asset['assetName'];
         $this->assetAntivirus = $asset['antivirus'];
         $this->assetModel = $asset['model'];
-        $this->assetManufacture = $asset['manufacture_id'];
+        $this->assetManufacture = $assetManufacture->name;
         $this->assetRam = $asset['ram'];
         $this->assetProcessor = $asset['processor'];
         $this->assetWindows = $asset['windows'];
         $this->assetStatus = $asset['status'];
+        if ($assetEmployee == NULL) {
+            $this->assetEmployee = "-";
+        } else {
+            $this->assetEmployee = $assetEmployee->employeeName;
+        }
+
+        // tab History Asset
+        $assetHistory = AssetHistory::with('employee', 'asset')->where('asset_id', $assetId)->orderBy('created_at', 'DESC')->get();
+
+        $this->assetHistories = $assetHistory;
+
+
+        // dd($assetManufacture);
         $this->dispatchBrowserEvent('showDetailAssetModal');
     }
 

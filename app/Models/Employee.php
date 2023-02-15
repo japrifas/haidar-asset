@@ -37,4 +37,8 @@ class Employee extends Model
     {
         return $this->hasOne(Asset::class, 'id', 'employee_id');
     }
+    public function assetHistories()
+    {
+        return $this->hasMany(AssetHistory::class, 'id', 'employee_id');
+    }
 }

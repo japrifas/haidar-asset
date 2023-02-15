@@ -153,8 +153,8 @@
                                                 Actions
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="/admin/assets/{{ $asset->id }}"
-                                                    {{-- wire:click.prevent="detailAsset({{ $asset }})" --}}>
+                                                <a class="dropdown-item" href="#"
+                                                    wire:click.prevent="detailAsset({{ $asset }})">
                                                     Detail
                                                 </a>
                                                 <a class="dropdown-item" href="#"
@@ -655,7 +655,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ $asset->assetName }}</h5>
+                    <h5 class="modal-title">{{ $assetName }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -677,60 +677,93 @@
                             <div class="card-body">
                                 <div class="tab-content">
                                     <div class="tab-pane active show" id="tabs-home-10" role="tabpanel">
-                                        <h4>Home tab</h4>
+
                                         <div>
 
                                             <table class="datatable">
                                                 <tr>
                                                     <td width="250">Asset Tag</td>
-                                                    <td> <input type="text" wire:model='assetTag'></td>
+                                                    <td>{{ $assetTag }} </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Asset Number</td>
-                                                    <td>{{ $this->assetName }}</td>
-                                                </tr>
+
 
                                                 <tr>
                                                     <td>Model</td>
-                                                    <td>{{ $this->assetModel }}</td>
+                                                    <td>{{ $assetModel }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Manufacture</td>
-                                                    <td>{{ $this->assetManufacture }}</td>
+                                                    <td>{{ $assetManufacture }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Ram</td>
-                                                    <td>{{ $asset->ram }}</td>
+                                                    <td>{{ $assetRam }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Processor</td>
-                                                    <td>{{ $asset->processor }}</td>
+                                                    <td>{{ $assetProcessor }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Os</td>
-                                                    <td>{{ $asset->windows }}</td>
+                                                    <td>{{ $assetWindows }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Antivirus</td>
-                                                    <td>{{ $asset->antivirus }}</td>
+                                                    <td>{{ $assetAntivirus }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Employee</td>
-                                                    <td>{{ $asset }}
-                                                        {{-- @if ($asset->employee_id == null)
-                                                            -
-                                                        @else
-                                                            {{ $asset->employee->employeeName }}
-                                                        @endif --}}
+                                                    <td>
+                                                        {{ $assetEmployee }}
                                                     </td>
                                                 </tr>
                                             </table>
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tabs-profile-10" role="tabpanel">
-                                        <h4>Profile tab</h4>
-                                        <div>Fringilla egestas nunc quis tellus diam rhoncus ultricies tristique enim at
-                                            diam, sem nunc amet, pellentesque id egestas velit sed</div>
+
+
+                                        <div class="table-responsive">
+                                            <table class="table card-table table-vcenter text-nowrap datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Date</th>
+                                                        <th>Asset Name</th>
+                                                        <th>Employee</th>
+                                                        <th>Status</th>
+                                                        <th>Note</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (is_array($assetHistories) || is_object($assetHistories))
+                                                        @forelse ($assetHistories as $ah)
+                                                            <tr>
+                                                                <td>
+                                                                    {{ $ah->created_at }}</td>
+
+
+                                                                <td>{{ $ah->asset->assetName }}</td>
+                                                                <td>
+                                                                    @if ($ah->employee_id == null)
+                                                                        -
+                                                                    @else
+                                                                        {{ $ah->employee->employeeName }}
+                                                                    @endif
+                                                                </td>
+                                                                <td>{{ $ah->action }}</td>
+                                                                <td>{{ $ah->note }}</td>
+                                                            </tr>
+                                                        @empty
+                                                            <tr>
+                                                                <td colspan="5" align="center"><span
+                                                                        class="text-muted">No Data
+                                                                        Available</span></td>
+                                                            </tr>
+                                                        @endforelse
+                                                    @endif
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -738,10 +771,7 @@
                     </div>
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </div>
+
 
             </div>
         </div>
