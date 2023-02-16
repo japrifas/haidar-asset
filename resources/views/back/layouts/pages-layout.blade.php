@@ -37,10 +37,15 @@
         body {
             font-feature-settings: "cv03", "cv04", "cv11";
         }
+
+        .detail {
+            max-height: 300px;
+            overflow-y: scroll;
+        }
     </style>
 </head>
 
-<body>
+<body style="zoom:85%;">
     <div class="wrapper">
         @include('back.layouts.inc.sidebar')
         @include('back.layouts.inc.header')

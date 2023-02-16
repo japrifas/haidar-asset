@@ -25,7 +25,7 @@
     <link href="{{ asset('back/dist/css/demo.min.css') }}" rel="stylesheet" />
 </head>
 
-<body class=" border-top-wide border-primary d-flex flex-column">
+<body class=" border-top-wide border-primary d-flex flex-column " style="zoom:85%;">
     @yield('content')
     <!-- Libs JS -->
     <!-- Tabler Core -->
@@ -40,13 +40,13 @@
                 $('.icon-tabler-eye-off').addClass("d-none");
                 $('.icon-tabler-eye').removeClass("d-none");
                 $(this).removeClass("show");
-                $('.input-password').attr('type','password');
+                $('.input-password').attr('type', 'password');
 
             } else {
                 $('.icon-tabler-eye-off').removeClass("d-none");
                 $('.icon-tabler-eye').addClass("d-none");
                 $(this).addClass("show");
-                $('.input-password').attr('type','text');
+                $('.input-password').attr('type', 'text');
             }
 
         });

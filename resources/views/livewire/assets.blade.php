@@ -681,7 +681,7 @@
 
                                 </ul>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body detail">
                                 <div class="tab-content">
                                     <div class="tab-pane active show" id="tabs-home-10" role="tabpanel">
 

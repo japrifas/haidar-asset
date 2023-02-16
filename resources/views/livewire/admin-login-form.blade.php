@@ -1,7 +1,24 @@
 <div>
     @if (Session::get('fail'))
-        <div class='alert alert-danger'>
-            {{ Session::get('fail') }}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <div class="d-flex">
+                <div>
+                    <!-- Download SVG icon from http://tabler-icons.io/i/info-circle -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24"
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                        <path d="M12 8l.01 0" />
+                        <path d="M11 12l1 0l0 4l1 0" />
+                    </svg>
+                </div>
+                <div>
+                    <h4 class="alert-title">{{ Session::get('fail') }}</h4>
+
+                </div>
+            </div>
+            <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
         </div>
     @endif
     <form class="card card-md" wire:submit.prevent='LoginHandler()' method="post" autocomplete="off">
@@ -28,17 +45,19 @@
                         <a href="#" class="link-secondary icon-password" title="Show password"
                             data-bs-toggle="tooltip">
                             <!-- Download SVG icon from http://tabler-icons.io/i/eye -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler-eye" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler-eye" width="24"
+                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <circle cx="12" cy="12" r="2" />
                                 <path
                                     d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
                             </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-off d-none
-                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="icon icon-tabler icon-tabler-eye-off d-none
+                                width="24"
+                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <line x1="3" y1="3" x2="21" y2="21"></line>
                                 <path d="M10.584 10.587a2 2 0 0 0 2.828 2.83"></path>
