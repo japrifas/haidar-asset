@@ -53,9 +53,16 @@
                             @forelse ($assets as $asset)
                                 <tr>
                                     <td>{{ $asset->assetTag }}</td>
-                                    <td>{{ $asset->assetName }} </td>
+                                    <td><span class="badge bg-yellow"> {{ $asset->assetName }} </span>
+                                    </td>
                                     <td>{{ $asset->manufacture->name }}</td>
-                                    <td>{{ $asset->status }}</td>
+                                    <td>
+                                        @if ($asset->status == 'assigned')
+                                            <span class="badge bg-red">{{ $asset->status }}</span>
+                                        @else
+                                            <span class="badge bg-green">{{ $asset->status }}</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         @if ($asset->employee_id == null)
                                             -
