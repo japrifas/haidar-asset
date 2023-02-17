@@ -257,7 +257,7 @@ class Assets extends Component
         $assetManufacture  =
             Manufacture::find($manufactureId);
         $employeeId = $asset['employee_id'];
-        $assetEmployee = Employee::find($employeeId);
+        $assetEmployee = Employee::withTrashed()->find($employeeId);
 
         $this->assetId = $assetId;
         $this->assetTag = $asset['assetTag'];
@@ -271,6 +271,8 @@ class Assets extends Component
         $this->assetStatus = $asset['status'];
         if ($assetEmployee == NULL) {
             $this->assetEmployee = "-";
+        } elseif ($assetEmployee['deleted_at'] != null) {
+            $this->assetEmployee = $assetEmployee->employeeName;
         } else {
             $this->assetEmployee = $assetEmployee->employeeName;
         }

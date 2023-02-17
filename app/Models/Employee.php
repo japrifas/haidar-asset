@@ -35,10 +35,10 @@ class Employee extends Model
     }
     public function asset()
     {
-        return $this->hasOne(Asset::class, 'id', 'employee_id');
+        return $this->hasOne(Asset::class, 'id', 'employee_id')->withTrashed();
     }
     public function assetHistories()
     {
-        return $this->hasMany(AssetHistory::class, 'id', 'employee_id');
+        return $this->hasMany(AssetHistory::class, 'id', 'employee_id')->withTrashed();
     }
 }

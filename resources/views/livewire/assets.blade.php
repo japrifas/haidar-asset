@@ -21,13 +21,13 @@
                             Search:
                             <div class="ms-2 d-inline-block">
                                 <input type="text" wire:model="search" class="form-control form-control-md"
-                                    placeholder="Search User...">
+                                    placeholder="Search Asset...">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table card-table table-vcenter text-nowrap datatable">
+                    <table class="table card-table table-vcenter text-nowrap datatable ">
                         <thead>
                             <tr>
                                 {{-- <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
@@ -70,7 +70,7 @@
                                             {{ $asset->employee->employeeName }}
                                         @endif
                                     </td>
-                                    <td>{{ $asset->created_at }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($asset->created_at)) }}</td>
 
 
 
@@ -253,7 +253,7 @@
                                 <div class="mb-3">
                                     <div class="form-label">Antivirus</div>
                                     <select class="form-select " style="width:100%;" wire:model='assetAntivirus'>
-                                        <option value="">-- Select --</option>
+                                        <option value="">-- Select Antivirus --</option>
                                         <option value="kaspersky">Kaspersky</option>
                                         <option value="other">Other</option>
 
@@ -279,7 +279,7 @@
                                 <div class="mb-3">
                                     <div class="form-label">Manufacture</div>
                                     <select class="form-select" style="width:100%;" wire:model='assetManufacture'>
-                                        <option value="">-- Select --</option>
+                                        <option value="">-- Select Manufacture --</option>
                                         @foreach ($manufactures as $manufacture)
                                             <option value="{{ $manufacture->id }}">{{ $manufacture->name }}</option>
                                         @endforeach
@@ -291,7 +291,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Ram</label>
                                     <select class="form-control" wire:model='assetRam'>
-                                        <option value="">-- Select --</option>
+                                        <option value="">-- Select Ram --</option>
                                         <option value="4 GB">4 GB</option>
                                         <option value="8 GB">8 GB</option>
                                         <option value="16 GB">16 GB</option>
@@ -309,7 +309,7 @@
                                 <div class="mb-3">
                                     <div class="form-label">Processor</div>
                                     <input type="text" class="form-control" style="width:100%;"
-                                        wire:model='assetProcessor'>
+                                        wire:model='assetProcessor' placeholder="Input Processor Type">
 
                                     </input>
                                     @error('assetProcessor')
@@ -319,9 +319,9 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">Windows</label>
+                                    <label class="form-label">Operating System</label>
                                     <select class="form-control" wire:model='assetWindows'>
-                                        <option value="">-- Select --</option>
+                                        <option value="">-- Select Operating System --</option>
                                         <option value="Windows 10 SL">Windows 10 SL</option>
                                         <option value="Windows 10 Pro">Windows 10 Pro</option>
                                         <option value="Mac Os">Mac Os</option>
@@ -340,7 +340,7 @@
                             <div class="col">
                                 <div class="form-label">Status</div>
                                 <select class="form-select " style="width:100%;" wire:model='assetStatus'>
-                                    <option value="">-- Select --</option>
+                                    <option value="">-- Select Status --</option>
                                     <option value="stock">On Stock</option>
                                     <option value="assigned">Assigned</option>
 

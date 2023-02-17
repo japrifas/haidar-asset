@@ -21,7 +21,7 @@
                             Search:
                             <div class="ms-2 d-inline-block">
                                 <input type="text" wire:model="search" class="form-control form-control-md"
-                                    placeholder="Search User...">
+                                    placeholder="Search Manufacture...">
                             </div>
                         </div>
                     </div>

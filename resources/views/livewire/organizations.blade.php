@@ -21,7 +21,7 @@
                             Search:
                             <div class="ms-2 d-inline-block">
                                 <input type="text" wire:model="search" class="form-control form-control-md"
-                                    placeholder="Search Employee...">
+                                    placeholder="Search Organization...">
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                                 {{-- <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
                                             aria-label="Select all invoices"></th> --}}
                                 <th wire:click="sortBy('organizationName')" style="cursor: pointer;">
-                                    Employee ID
+                                    Organization Name
                                     @include('back.partials._sort-icon', ['field' => 'employeeId'])
                                 </th>
 

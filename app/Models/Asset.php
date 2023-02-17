@@ -26,7 +26,7 @@ class Asset extends Model
     }
     public function employee()
     {
-        return $this->belongsTo(Employee::class, 'employee_id', 'id');
+        return $this->belongsTo(Employee::class, 'employee_id', 'id')->withTrashed();
     }
     public function scopeSearch($query, $val)
     {
