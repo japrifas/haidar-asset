@@ -52,15 +52,15 @@
                         <tbody>
                             @forelse ($assets as $asset)
                                 <tr>
-                                    <td>{{ $asset->assetTag }}</td>
+                                    <td class="text-muted">{{ $asset->assetTag }}</td>
                                     <td><span class="badge bg-yellow"> {{ $asset->assetName }} </span>
                                     </td>
                                     <td>{{ $asset->manufacture->name }}</td>
                                     <td>
                                         @if ($asset->status == 'assigned')
-                                            <span class="badge bg-red">{{ $asset->status }}</span>
+                                            <span class="badge bg-danger me-1"></span>{{ $asset->status }}
                                         @else
-                                            <span class="badge bg-green">{{ $asset->status }}</span>
+                                            <span class="badge bg-success me-1"></span>{{ $asset->status }}
                                         @endif
                                     </td>
                                     <td>
@@ -155,7 +155,7 @@
                                         @endif --}}
 
                                         <div class="dropdown">
-                                            <button class="btn dropdown-toggle align-text-top"
+                                            <button class="btn dropdown-toggle align-text-top "
                                                 data-bs-toggle="dropdown">
                                                 Actions
                                             </button>
@@ -659,7 +659,7 @@
     {{-- modal detail asset --}}
     <div wire:ignore.self class="modal modal-blur fade" id="modal_detail_asset" tabindex="-1" aria-hidden="true"
         role="dialog">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">{{ $assetName }}</h5>
@@ -687,7 +687,7 @@
 
                                         <div>
 
-                                            <table class="datatable">
+                                            <table class="table card-table table-vcenter text-nowrap datatable">
                                                 <tr>
                                                     <td width="250">Asset Tag</td>
                                                     <td>{{ $assetTag }} </td>
@@ -746,7 +746,8 @@
                                                         @forelse ($assetHistories as $ah)
                                                             <tr>
                                                                 <td>
-                                                                    {{ $ah->created_at }}</td>
+                                                                    {{ date('d-m-Y', strtotime($ah->created_at)) }}
+                                                                </td>
 
 
                                                                 <td>{{ $ah->asset->assetName }}</td>
