@@ -751,7 +751,7 @@
 
                                                                 <td>{{ $ah->asset->assetName }}</td>
                                                                 <td>
-                                                                    @if ($ah->employee_id == null)
+                                                                    @if ($ah->employee == null)
                                                                         -
                                                                     @else
                                                                         {{ $ah->employee->employeeName }}
